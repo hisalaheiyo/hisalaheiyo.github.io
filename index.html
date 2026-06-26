@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Changyi Li</title>
+<meta name="description" content="Changyi Li — Doctoral Researcher at Aalto University, working on computer vision: visual anomaly detection and cross-domain action recognition.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#F2F3F1;
+    --surface:#FBFBFA;
+    --ink:#1A1A1C;
+    --ink-soft:#5C5E5C;
+    --ink-faint:#8A8C88;
+    --rule:#DEDFDA;
+    --accent:#862633;
+    --accent-ink:#6E1F2A;
+    --accent-soft:rgba(134,38,51,.07);
+
+    --serif:"Newsreader",Georgia,"Times New Roman",serif;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+    --maxw:1080px;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+
+  a{color:inherit}
+  ::selection{background:var(--accent);color:#fff}
+
+  a:focus-visible,button:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .layout{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 28px;
+    display:grid;
+    grid-template-columns:288px 1fr;
+    gap:56px;
+    align-items:start;
+  }
+
+  /* =================== RAIL =================== */
+  .rail{
+    position:sticky;
+    top:0;
+    align-self:start;
+    padding:46px 0 40px;
+  }
+  .rail-inner{display:flex;flex-direction:column;gap:22px}
+
+  .portrait{
+    width:84px;height:84px;border-radius:50%;
+    background:linear-gradient(155deg,#e9e7e0,#cfcdc4);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-size:28px;color:var(--accent);
+    border:1px solid var(--rule);
+    overflow:hidden;
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover}
+
+  .name{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:31px;
+    line-height:1.05;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  .role{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:14.5px;
+    line-height:1.45;
+  }
+  .role b{color:var(--ink);font-weight:600}
+
+  .tagline{
+    margin:0;
+    font-size:14px;
+    color:var(--ink-soft);
+    line-height:1.55;
+    border-top:1px solid var(--rule);
+    padding-top:18px;
+  }
+
+  .nav{display:flex;flex-direction:column;gap:1px;margin-top:2px}
+  .nav a{
+    text-decoration:none;
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    padding:6px 0 6px 18px;
+    position:relative;
+    transition:color .18s ease;
+  }
+  .nav a::before{
+    content:"";position:absolute;left:0;top:50%;
+    width:6px;height:1px;background:var(--ink-faint);
+    transform:translateY(-50%) scaleX(.6);transform-origin:left;
+    transition:all .18s ease;
+  }
+  .nav a:hover{color:var(--ink)}
+  .nav a.active{color:var(--accent)}
+  .nav a.active::before{background:var(--accent);width:11px;transform:translateY(-50%) scaleX(1)}
+
+  .links{display:flex;flex-wrap:wrap;gap:6px 14px;border-top:1px solid var(--rule);padding-top:18px}
+  .links a{
+    text-decoration:none;font-size:13px;color:var(--ink-soft);
+    display:inline-flex;align-items:center;gap:6px;
+    transition:color .18s ease;
+  }
+  .links a:hover{color:var(--accent)}
+  .links svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.6}
+
+  /* =================== CONTENT =================== */
+  .content{padding:54px 0 90px;min-width:0}
+
+  section{margin-bottom:60px;scroll-margin-top:30px}
+
+  .eyebrow{
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--accent);
+    display:flex;align-items:center;gap:12px;margin-bottom:22px;
+  }
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+  .subhead{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-faint);margin:32px 0 4px;
+  }
+
+  .lede{
+    font-family:var(--serif);
+    font-size:clamp(21px,2.4vw,27px);
+    line-height:1.45;
+    font-weight:400;
+    letter-spacing:-.01em;
+    margin:0 0 20px;
+    max-width:44ch;
+  }
+  .lede em{color:var(--accent);font-style:italic}
+  .prose p{margin:0 0 15px;max-width:64ch;color:#28282b}
+  .prose p:last-child{margin-bottom:0}
+  .prose a{color:var(--accent-ink);text-underline-offset:3px;text-decoration-thickness:1px}
+
+  .themes{display:grid;gap:2px;margin-top:4px}
+  .theme{
+    display:grid;grid-template-columns:30px 1fr;gap:18px;
+    padding:18px 0;border-top:1px solid var(--rule);align-items:baseline;
+  }
+  .theme:last-child{border-bottom:1px solid var(--rule)}
+  .theme .no{font-family:var(--mono);font-size:12px;color:var(--accent);padding-top:3px}
+  .theme h3{font-family:var(--serif);font-weight:500;font-size:19px;margin:0 0 5px;letter-spacing:-.01em}
+  .theme p{margin:0;color:var(--ink-soft);font-size:14.5px;max-width:62ch}
+
+  /* publications */
+  .pubs{display:flex;flex-direction:column}
+  .pub{
+    display:grid;grid-template-columns:34px 1fr;gap:14px;
+    padding:20px 16px 20px 16px;border-top:1px solid var(--rule);
+    border-radius:5px;transition:background .2s ease;
+    margin:0 -16px;
+  }
+  .pub:last-child{border-bottom:1px solid var(--rule)}
+  .pub:hover{background:var(--accent-soft)}
+  .ref{font-family:var(--mono);font-size:13px;color:var(--accent);padding-top:2px}
+  .pub-body{min-width:0}
+  .pub-title{font-family:var(--serif);font-size:18.5px;font-weight:500;line-height:1.32;margin:0 0 5px;letter-spacing:-.005em}
+  .pub-authors{font-size:14px;color:var(--ink-soft);margin:0 0 6px}
+  .pub-authors .me{color:var(--ink);font-weight:600}
+  .venue{font-family:var(--mono);font-size:12.5px;color:var(--ink);letter-spacing:.01em}
+  .venue .yr{color:var(--ink-faint)}
+  .tag{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent-ink);border:1px solid var(--accent);border-radius:99px;
+    padding:1px 8px;margin-left:8px;vertical-align:1px;white-space:nowrap;
+  }
+  .pub-links{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+  .pub-links a{
+    text-decoration:none;font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;
+    color:var(--ink-soft);border:1px solid var(--rule);border-radius:4px;padding:2px 9px;
+    background:var(--surface);transition:all .16s ease;
+  }
+  .pub-links a:hover{border-color:var(--accent);color:var(--accent);background:#fff}
+
+  /* news / lists */
+  .news{display:flex;flex-direction:column}
+  .item{display:grid;grid-template-columns:104px 1fr;gap:16px;padding:13px 0;border-top:1px solid var(--rule);align-items:baseline}
+  .item:last-child{border-bottom:1px solid var(--rule)}
+  .item .date{font-family:var(--mono);font-size:12px;color:var(--ink-faint)}
+  .item .what{font-size:15px;color:#2c2c2f}
+  .item .what a{color:var(--accent-ink)}
+  .edu .deg{font-weight:600;font-size:15px}
+  .edu .org{color:var(--ink-soft);font-size:14px}
+
+  footer.foot{
+    margin-top:30px;padding-top:24px;border-top:1px solid var(--rule);
+    font-family:var(--mono);font-size:12px;color:var(--ink-faint);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+  footer.foot a{color:var(--ink-soft);text-decoration:none}
+  footer.foot a:hover{color:var(--accent)}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  @media (max-width:880px){
+    .layout{grid-template-columns:1fr;gap:0;padding:0 22px}
+    .rail{position:static;padding:40px 0 8px}
+    .rail-inner{display:grid;grid-template-columns:auto 1fr;grid-template-areas:
+      "pic head" "tag tag" "nav nav" "links links";
+      gap:16px 20px;align-items:center}
+    .portrait{grid-area:pic}
+    .rail-head{grid-area:head}
+    .tagline{grid-area:tag}
+    .nav{grid-area:nav;flex-direction:row;flex-wrap:wrap;gap:2px 18px;border-top:1px solid var(--rule);padding-top:16px}
+    .nav a{padding:4px 0}
+    .nav a::before{display:none}
+    .links{grid-area:links}
+    .content{padding:26px 0 70px}
+    section{margin-bottom:48px}
+  }
+  @media (min-width:881px){.rail-head{display:contents}}
+</style>
+</head>
+
+<body>
+<div class="layout">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="rail">
+    <div class="rail-inner">
+      <!-- To use a photo: replace the line below with
+           <img class="portrait" src="me.jpg" alt="Changyi Li"> -->
+      <div class="portrait" aria-hidden="true">CL</div>
+
+      <div class="rail-head">
+        <h1 class="name">Changyi Li</h1>
+        <p class="role"><b>Doctoral Researcher</b>, ELEC<br>Aalto University · advised by Yu Xiao</p>
+      </div>
+
+      <p class="tagline">Computer vision — visual anomaly detection &amp; cross-domain action recognition.</p>
+
+      <nav class="nav" aria-label="Sections">
+        <a href="#about" class="active">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#news">News</a>
+        <a href="#education">Education</a>
+      </nav>
+
+      <div class="links">
+        <a href="mailto:changyi.li@aalto.fi"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email</a>
+        <a href="https://scholar.google.com/citations?user=y_z86vIAAAAJ&amp;hl=en"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17"/><path d="M5 12v4c0 1.5 3 3 7 3s7-1.5 7-3v-4"/></svg>Scholar</a>
+        <a href="#"><svg viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2-6-2m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6A4.6 4.6 0 0 0 18 7a4.3 4.3 0 0 0-.1-3.2s-1-.3-3.5 1.3a12 12 0 0 0-6 0C5.9 3.5 4.9 3.8 4.9 3.8A4.3 4.3 0 0 0 4.8 7 4.6 4.6 0 0 0 3.5 10c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V22"/></svg>GitHub</a>
+        <a href="cv.pdf"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/></svg>CV</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <main class="content">
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <p class="lede">I work on computer vision — building methods for <em>visual anomaly detection</em> and for recognizing human action <em>across changing domains</em>.</p>
+      <div class="prose">
+        <p>I'm a doctoral researcher at Aalto University's School of Electrical Engineering (ELEC), advised by Prof. Yu Xiao. My research centers on industrial and video anomaly detection and on cross-domain few-shot action recognition, with ongoing collaborations in multimodal sensing and large language models for structured data.</p>
+        <p>Before Aalto, I worked as an engineer at Huawei's Chengdu Research Institute (2022–2023), and earned my master's degree at the University of Electronic Science and Technology of China (2019–2022). Feel free to reach out at <a href="mailto:changyi.li@aalto.fi">changyi.li@aalto.fi</a>.</p>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research" class="reveal">
+      <div class="eyebrow">Research</div>
+      <div class="themes">
+        <div class="theme"><div class="no">01</div><div>
+          <h3>Visual Anomaly Detection</h3>
+          <p>Detecting structural and logical defects in industrial images and anomalous events in video — through knowledge distillation, training-free calibrated fusion, and scene-adaptive temporal modeling.</p>
+        </div></div>
+        <div class="theme"><div class="no">02</div><div>
+          <h3>Cross-Domain Few-Shot Action Recognition</h3>
+          <p>Recognizing human activity when training and deployment domains differ, with a focus on transductive, training-free inference and on understanding what actually drives generalization.</p>
+        </div></div>
+        <div class="theme"><div class="no">03</div><div>
+          <h3>LLMs &amp; Multimodal Sensing</h3>
+          <p>Collaborative work on large language models for querying domain-specific knowledge graphs (text-to-Cypher), and on multimodal sensing for beam prediction toward 6G.</p>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications" class="reveal">
+      <div class="eyebrow">Publications</div>
+
+      <div class="subhead">Published &amp; Accepted</div>
+      <div class="pubs">
+
+        <article class="pub">
+          <div class="ref">[1]</div>
+          <div class="pub-body">
+            <p class="pub-title">UniSLAD: A Unified Framework for Structural and Logical Industrial Visual Anomaly Detection</p>
+            <p class="pub-authors"><span class="me">Changyi Li</span>, Chao Yang, Yu Xiao, Kari Tammi</p>
+            <span class="venue">IEEE CASE <span class="yr">2026</span></span>
+            <div class="pub-links"><a href="https://arxiv.org/abs/2606.20768">arXiv</a></div>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[2]</div>
+          <div class="pub-body">
+            <p class="pub-title">Multi-Modal Sensing-Assisted Cross-Environment Beam Prediction Towards 6G</p>
+            <p class="pub-authors">Lei Wang, <span class="me">Changyi Li</span>, Kai Dong, Sergiy A. Vorobyov, Esa Ollila</p>
+            <span class="venue">IEEE PIMRC <span class="yr">2026</span></span><span class="tag">Oral</span>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[3]</div>
+          <div class="pub-body">
+            <p class="pub-title">A Portable Hybrid Quantum–Classical Neural Network for Continual Learning</p>
+            <p class="pub-authors">Zeyu Yang, Yunpeng Bai, <span class="me">Changyi Li</span>, Yu Xiao</p>
+            <span class="venue">IEEE QCNC <span class="yr">2026</span></span>
+            <div class="pub-links"><a href="https://ieeexplore.ieee.org/abstract/document/11500338/">IEEE</a></div>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[4]</div>
+          <div class="pub-body">
+            <p class="pub-title">Exploring Human–AI Collaboration in E-Textile Design: A Case Study on Flex Sensor Placement for Shoulder Motion Detection</p>
+            <p class="pub-authors">Zhuchenyang Liu, Yao Zhang, Yalan He, Hilla Paasio, <span class="me">Changyi Li</span>, Guna Semjonova, Yu Xiao</p>
+            <span class="venue">Proc. ACM Hum.-Comput. Interact. <span class="yr">2026</span></span>
+            <div class="pub-links"><a href="https://arxiv.org/abs/2603.13575">arXiv</a></div>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[5]</div>
+          <div class="pub-body">
+            <p class="pub-title">Enhancing Knowledge Graph Interactions: A Comprehensive Text-to-Cypher Pipeline with Large Language Models</p>
+            <p class="pub-authors">Chao Yang, <span class="me">Changyi Li</span>, Xiaodu Hu, Hao Yu, Jinzhi Lu</p>
+            <span class="venue">Information Processing &amp; Management <span class="yr">2025</span></span><span class="tag">Journal</span>
+            <div class="pub-links"><a href="https://www.sciencedirect.com/science/article/pii/S0306457325002213">Paper</a></div>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[6]</div>
+          <div class="pub-body">
+            <p class="pub-title">Revisiting the Impact of Domain Similarity on the Performance of Cross-Domain Few-Shot Activity Recognition</p>
+            <p class="pub-authors"><span class="me">Changyi Li</span>, Yu Xiao</p>
+            <span class="venue">IEEE BigData <span class="yr">2025</span></span>
+            <div class="pub-links"><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=y_z86vIAAAAJ&amp;citation_for_view=y_z86vIAAAAJ:9yKSN-GCB0IC">Scholar</a></div>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[7]</div>
+          <div class="pub-body">
+            <p class="pub-title">S2TKD: Dual-Student Knowledge Distillation for Industrial Visual Anomaly Detection and Localization</p>
+            <p class="pub-authors"><span class="me">Changyi Li</span>, Chao Yang, Yu Xiao</p>
+            <span class="venue">IEEE BigData <span class="yr">2025</span></span><span class="tag">Oral</span>
+            <div class="pub-links"><a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=y_z86vIAAAAJ&amp;citation_for_view=y_z86vIAAAAJ:d1gkVwhDpl0C">Scholar</a></div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="subhead">Preprints &amp; Under Review</div>
+      <div class="pubs">
+
+        <article class="pub">
+          <div class="ref">[8]</div>
+          <div class="pub-body">
+            <p class="pub-title">COMPASS: Scene-Adaptive Contextual Modeling for Video Anomaly Detection</p>
+            <p class="pub-authors"><span class="me">Changyi Li</span>, Chao Yang, Yu Xiao, Kari Tammi</p>
+            <span class="venue">NeurIPS <span class="yr">2026</span> · under review</span>
+            <div class="pub-links"><a href="https://openreview.net/forum?noteId=4S73Nd9K4v">OpenReview</a></div>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[9]</div>
+          <div class="pub-body">
+            <p class="pub-title">Diffusion Features Complement Vision–Language Models for Fine-Grained Visual Discrimination</p>
+            <p class="pub-authors">Ziyu Hu, <span class="me">Changyi Li</span>, Yu Xiao</p>
+            <span class="venue">NeurIPS <span class="yr">2026</span> · under review</span>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[10]</div>
+          <div class="pub-body">
+            <p class="pub-title">CLAD: Complexity- and Logic-Aware Decomposition for Text-to-Cypher over Domain-Specific Knowledge Graphs</p>
+            <p class="pub-authors">Chao Yang, <span class="me">Changyi Li</span>, Ying Liu, Shen Yin, Peixing Zhang, Bing Zhu, Risto Ojala, Kari Tammi</p>
+            <span class="venue">EMNLP <span class="yr">2026</span> · under review</span>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[11]</div>
+          <div class="pub-body">
+            <p class="pub-title">Reachability Is Not Generalization: Understanding Verb–Noun Decomposition in Assembly Action Recognition</p>
+            <p class="pub-authors"><span class="me">Changyi Li</span>, Yu Xiao</p>
+            <span class="venue">BMVC <span class="yr">2026</span> · under review</span>
+            <div class="pub-links"><a href="https://openreview.net/forum?noteId=vOOcnmI7pz">OpenReview</a></div>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[12]</div>
+          <div class="pub-body">
+            <p class="pub-title">Closing the Estimation Gap: Training-Free Transductive Inference for Cross-Domain Few-Shot Action Recognition</p>
+            <p class="pub-authors"><span class="me">Changyi Li</span>, Yu Xiao</p>
+            <span class="venue">BMVC <span class="yr">2026</span> · under review</span>
+            <div class="pub-links"><a href="https://openreview.net/forum?noteId=IktaCJh0yH">OpenReview</a></div>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[13]</div>
+          <div class="pub-body">
+            <p class="pub-title">Adaptive Multi-Granularity Temporal Modeling for Weakly Supervised Video Anomaly Detection</p>
+            <p class="pub-authors"><span class="me">Changyi Li</span>, Yu Xiao</p>
+            <span class="venue">PRCV <span class="yr">2026</span> · under review</span>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[14]</div>
+          <div class="pub-body">
+            <p class="pub-title">Training-Free Logical and Structural Anomaly Detection via Calibrated Fusion</p>
+            <p class="pub-authors"><span class="me">Changyi Li</span>, Miao Yu, Kai Dong, Yu Xiao</p>
+            <span class="venue">PRCV <span class="yr">2026</span> · under review</span>
+          </div>
+        </article>
+
+        <article class="pub">
+          <div class="ref">[15]</div>
+          <div class="pub-body">
+            <p class="pub-title">Compressed LLM Preprogramming for Vision-Aided Beam Prediction in Vehicular Networks</p>
+            <p class="pub-authors">Kai Dong, Lei Wang, <span class="me">Changyi Li</span>, Sergiy A. Vorobyov, Stefan Werner</p>
+            <span class="venue">IEEE Communications Letters · under review</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- NEWS  (dates are approximate — adjust to the real ones) -->
+    <section id="news" class="reveal">
+      <div class="eyebrow">News</div>
+      <div class="news">
+        <div class="item"><div class="date">2026</div><div class="what">“UniSLAD” accepted to IEEE CASE 2026; beam-prediction work accepted to IEEE PIMRC 2026 (oral).</div></div>
+        <div class="item"><div class="date">2026</div><div class="what">Several papers submitted to NeurIPS, EMNLP, BMVC and PRCV 2026.</div></div>
+        <div class="item"><div class="date">2025</div><div class="what">Two papers accepted to IEEE BigData 2025 — one as an oral presentation.</div></div>
+        <div class="item"><div class="date">2023</div><div class="what">Started my Ph.D. at Aalto University, advised by Yu Xiao.</div></div>
+      </div>
+    </section>
+
+    <!-- EDUCATION & EXPERIENCE -->
+    <section id="education" class="reveal">
+      <div class="eyebrow">Education &amp; Experience</div>
+      <div class="news edu">
+        <div class="item"><div class="date">2023 — now</div><div><div class="deg">Ph.D. Candidate, Computer Vision</div><div class="org">Aalto University, School of Electrical Engineering (ELEC) · advised by Yu Xiao</div></div></div>
+        <div class="item"><div class="date">2022 — 23</div><div><div class="deg">Research Engineer</div><div class="org">Huawei, Chengdu Research Institute</div></div></div>
+        <div class="item"><div class="date">2019 — 22</div><div><div class="deg">M.Sc.</div><div class="org">University of Electronic Science and Technology of China (UESTC)</div></div></div>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>© 2026 Changyi Li</span>
+      <span>Last updated June 2026 · <a href="mailto:changyi.li@aalto.fi">changyi.li@aalto.fi</a></span>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav a'));
+    var map = {};
+    links.forEach(function(a){ var s = document.querySelector(a.getAttribute('href')); if(s) map[s.id]=a; });
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          links.forEach(function(l){l.classList.remove('active');});
+          if(map[e.target.id]) map[e.target.id].classList.add('active');
+        }
+      });
+    },{rootMargin:'-45% 0px -50% 0px'});
+    document.querySelectorAll('main section[id]').forEach(function(s){spy.observe(s);});
+
+    var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if(reduce){ document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');}); return; }
+    var rev = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target);} });
+    },{rootMargin:'0px 0px -10% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){rev.observe(el);});
+  })();
+</script>
+</body>
+</html>
